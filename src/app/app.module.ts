@@ -34,9 +34,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     NgbModule,
     FormsModule,
     MatSnackBarModule,
+    // them {put204: false} de request update khong tra ve null
     HttpClientInMemoryWebApiModule.forRoot(DbService, { put204: false}),
     HttpClientModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers,{metaReducers}),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),

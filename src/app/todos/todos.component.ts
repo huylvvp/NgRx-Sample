@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from '../Store/app.state';
 import { Todo } from '../Models/todo';
-import { getTodos } from '../Store/Actions/todo.actions';
+import { deleteTodo, getTodos, updateTodo } from '../Store/Actions/todo.actions';
 import { selectTodos } from '../Store/Selectors/todo.selectors';
 import { Output,EventEmitter } from '@angular/core';
 
@@ -25,13 +25,22 @@ export class TodosComponent implements OnInit {
     // this.getTodos();
   }
 
-  edit(todo:Todo) {
+  editTodo(todo:Todo) {
     console.log(todo);
     this.onEditTodo.emit(todo);    
     console.log("edit")
   }
-  // getTodos() {
-  //   this.store.dispatch(getTodos());
-  // }
+ 
+  completeTodo(todo:Todo) {
+    let completedTodo = new Todo();
+    completedTodo.complete = true;
+    completedTodo.id = todo.id;
+    completedTodo.title = todo.title
+    this.store.dispatch(updateTodo({todo: completedTodo}))
+  }
+
+  removeTodo(todoId:number) {
+    this.store.dispatch(deleteTodo({todoId:todoId}))
+  }
 }
 

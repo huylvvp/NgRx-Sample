@@ -9,7 +9,9 @@ export enum TodosAction {
   AddTodo = '[Todo Page] Add Todo',
   AddTodoSuccess = '[Todo Page] Add Todo success',
   UpdateTodo = '[Todo Page] Update Todo',
-  UpdateTodoSuccess = '[Todo Page] Update Todo success'
+  UpdateTodoSuccess = '[Todo Page] Update Todo success',
+  DeleteTodo = '[Todo Page] Delete Todo',
+  DeleteTodoSuccess = '[Todo Page] Delete Todo success',
 }
 
 
@@ -19,8 +21,6 @@ export const getTodosSuccess = createAction(
   TodosAction.GetTodosSuccess,
   props<{ todos: ReadonlyArray<Todo> }>()
 );
-
-// export const getTodosFail = createAction(TodosAction.GetTodosFail);
 
 export const addTodo = createAction(
   TodosAction.AddTodo,
@@ -32,15 +32,22 @@ export const addTodoSuccess = createAction(
   props<{ todo: Todo }>()
 )
 
-
 export const updateTodo = createAction(
   TodosAction.UpdateTodo,
   props<{ todo: Todo }>()
 )
 
 export const updateTodoSuccess = createAction(
-  TodosAction.AddTodoSuccess,
+  TodosAction.UpdateTodoSuccess,
   props<{ todo: Todo }>()
 )
 
+export const deleteTodo = createAction(
+  TodosAction.DeleteTodo,
+  props<{ todoId: number }>()
+)
 
+export const deleteTodoSuccess = createAction(
+  TodosAction.DeleteTodoSuccess,
+  props<{ todoId: number }>()
+)

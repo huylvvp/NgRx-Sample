@@ -1,7 +1,7 @@
 import { ActionReducerMap, createReducer, on } from '@ngrx/store';
 
 import { Todo } from '../../Models/todo';
-import { addTodo, addTodoSuccess, getTodosSuccess, updateTodoSuccess } from '../Actions/todo.actions';
+import { addTodo, addTodoSuccess, deleteTodoSuccess, getTodosSuccess, updateTodoSuccess } from '../Actions/todo.actions';
 import { initialTodosState } from '../todo.state';
 
 export const todosReducer = createReducer(
@@ -38,4 +38,13 @@ export const todosReducer = createReducer(
         todos: todos,
       }
     }),
+  
+  on(deleteTodoSuccess,
+    (state,{todoId}) => (
+      {
+        ...state,
+        todos: state.todos.filter((todo) => todo.id != todoId)
+      }
+    )
+    )
 )

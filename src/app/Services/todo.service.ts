@@ -31,8 +31,6 @@ export class TodoService {
   }
 
   updateTodo(todo: Todo): Observable<Todo> {
-    console.log("Service update todo");
-    console.log(todo)
     return this.http.put<Todo>(`${this.url}/${todo.id}`, todo).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);
@@ -41,4 +39,12 @@ export class TodoService {
     )
   }
 
+  deleteTodo(todoId: number) {
+    return this.http.delete(`${this.url}/${todoId}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error(error);
+        return throwError(error);
+      })
+    );
+  }
 }

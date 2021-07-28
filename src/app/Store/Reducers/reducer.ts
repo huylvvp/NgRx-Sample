@@ -4,6 +4,7 @@ import { AppState } from "src/app/Store/app.state";
 import { sharedReducers } from "./shard.reducers";
 import { todosReducer } from "./todo.reducers";
 
+// meta reducer thuc hien debug truoc khi reducer binh thuong khac xu ly
 export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
   return function (state, action) {
     console.log('state', state);

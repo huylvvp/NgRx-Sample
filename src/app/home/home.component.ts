@@ -33,7 +33,9 @@ export class HomeComponent implements OnInit {
   addTodo(){
     console.log("Add todos")
     this.store.dispatch(addTodo({todo:this.newTodo}))  
+    this.newTodo = new Todo();
   }
+  
   getTodos() {
     console.log("Get Todos")
     this.store.dispatch(getTodos());

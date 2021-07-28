@@ -9,9 +9,9 @@
       <tr *ngFor="let todo of todos$| async">
         <td><a routerLink='/{{todo.id}}'>{{todo.title}}</a></td>
         <td>
-          <button type="button" class="btn btn-secondary" (click)="edit(todo)">Edit</button>
-          <button type="button" class="btn btn-danger ml-4">Remove</button>
-          <button type="button" class="btn btn-success ml-4">Completed</button>
+          <button type="button" class="btn btn-secondary" (click)="editTodo(todo)">Edit</button>
+          <button type="button" class="btn btn-danger ml-4" (click)="removeTodo(todo.id)">Remove</button>
+          <button type="button" class="btn btn-success ml-4" (click)="completeTodo(todo)" >Completed</button>
         </td>
       </tr>
     </tbody>
