@@ -1,0 +1,8 @@
+<div class="card" *ngIf="todo$ | async as todo" style=" width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Todo</h5>
+    <p class="card-text">Id: {{todo.id}} </p>
+    <p class="card-text">Title: {{todo.title}}
+    </p>
+  </div>
+</div>

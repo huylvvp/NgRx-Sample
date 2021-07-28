@@ -1,0 +1,27 @@
+<div class="container">
+  <form novalidate class="row justify-content-md-center mt-5">
+    <div class="col-md-8">
+      <div class="form-group row">
+        <label for="title-input" class="col-md-2 col-form-label">Title:</label>
+        <div class="col-md-10">
+          <input class="form-control" required type="text" name="title" [(ngModel)]="newTodo.title"  id="title-input">
+        </div>
+      </div>      
+      <div class="col-md-10 offset-md-2">
+          <div class="form-group row">
+
+          <button *ngIf="!isEdit" class="btn btn-primary" type="submit" (click)="addTodo()">Add</button>
+          <button *ngIf="isEdit" class="btn btn-info" type="submit" (click)="editTodo()">Update</button>
+          <button *ngIf="isEdit" class="btn btn-light ml-4" type="submit" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row justify-content-md-center">
+      <div class="col-md-6 mt-5">
+        <h1>TodoList</h1>    
+        <!-- <div style="color: brown;" *ngIf="loadError$ | async">An errors occured</div> -->
+        <app-todos (onEditTodo)="handleEditEvent($event)"></app-todos>
+      </div>
+  </div>
+</div>

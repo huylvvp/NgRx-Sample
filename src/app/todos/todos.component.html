@@ -1,0 +1,18 @@
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of todos$| async">
+        <td><a routerLink='/{{todo.id}}'>{{todo.title}}</a></td>
+        <td>
+          <button type="button" class="btn btn-secondary" (click)="edit(todo)">Edit</button>
+          <button type="button" class="btn btn-danger ml-4">Remove</button>
+          <button type="button" class="btn btn-success ml-4">Completed</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
