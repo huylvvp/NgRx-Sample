@@ -31,18 +31,15 @@ export class HomeComponent implements OnInit {
   }
   
   addTodo(){
-    console.log("Add todos")
     this.store.dispatch(addTodo({todo:this.newTodo}))  
     this.newTodo = new Todo();
   }
   
   getTodos() {
-    console.log("Get Todos")
     this.store.dispatch(getTodos());
   }
 
   handleEditEvent($event:any) {
-    console.log($event);
     this.newTodo = new Todo($event.title,$event.completed);
     this.newTodo.id = $event.id
     this.selectedIndex = $event.id;
@@ -50,8 +47,6 @@ export class HomeComponent implements OnInit {
   }
   
   editTodo() {
-    console.log("Edit todo");
-    console.log(this.newTodo)
     this.store.dispatch(updateTodo({todo:this.newTodo}))
     this.cancelEdit()
   }

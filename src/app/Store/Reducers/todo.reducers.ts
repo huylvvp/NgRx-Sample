@@ -26,7 +26,6 @@ export const todosReducer = createReducer(
 
   on(updateTodoSuccess,
     (state, { todo }) => {
-      
       const todos = state.todos.map((t) => {
         if (t.id === todo.id) {
           return todo;

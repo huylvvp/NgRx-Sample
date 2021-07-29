@@ -22,7 +22,6 @@ export class TodoEffects {
 
   addTodos$ = createEffect(() => {
     return this.actions$.pipe(ofType(TodosAction.AddTodo),
-      tap((action) => console.log(action)),
       concatMap((action) =>
         this.todoService.addTodo(action['todo']).pipe(
           map((todo) => addTodoSuccess({ todo })),
@@ -36,7 +35,6 @@ export class TodoEffects {
 
   updateTodos$ = createEffect(() => {
     return this.actions$.pipe(ofType(TodosAction.UpdateTodo),
-      tap((action) => console.log(action)),
       concatMap((action) =>
         this.todoService.updateTodo(action['todo']).pipe(
           map((todo) => updateTodoSuccess({ todo })),
@@ -49,7 +47,6 @@ export class TodoEffects {
   })
 
   deleteTodo$ = createEffect(() => this.actions$.pipe(ofType(TodosAction.DeleteTodo),
-    tap((action) => console.log(action)),
     mergeMap((action) => this.todoService.deleteTodo(action['todoId']).pipe(
       map(() => deleteTodoSuccess({ todoId: action['todoId'] })),
       catchError(() =>

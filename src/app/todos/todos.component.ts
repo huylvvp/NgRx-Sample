@@ -25,9 +25,7 @@ export class TodosComponent implements OnInit {
   }
 
   editTodo(todo:Todo) {
-    console.log(todo);
     this.onEditTodo.emit(todo);    
-    console.log("edit")
   }
  
   completeTodo(todo:Todo) {

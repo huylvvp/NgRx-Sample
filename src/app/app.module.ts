@@ -38,7 +38,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     HttpClientInMemoryWebApiModule.forRoot(DbService, { put204: false}),
     HttpClientModule,
     StoreModule.forRoot(reducers, {
-      runtimeChecks: {
+      runtimeChecks: { 
         strictStateImmutability: true,
         strictActionImmutability: true,
         strictStateSerializability: true,
