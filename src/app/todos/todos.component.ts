@@ -22,7 +22,6 @@ export class TodosComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getTodos();
   }
 
   editTodo(todo:Todo) {
