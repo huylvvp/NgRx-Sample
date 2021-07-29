@@ -37,7 +37,16 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     // them {put204: false} de request update khong tra ve null
     HttpClientInMemoryWebApiModule.forRoot(DbService, { put204: false}),
     HttpClientModule,
-    StoreModule.forRoot(reducers,{metaReducers}),
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+        strictActionWithinNgZone: false,
+        strictActionTypeUniqueness: true,
+      },metaReducers
+    }),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
