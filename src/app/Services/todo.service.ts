@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError} from 'rxjs';
 import { Todo } from '../Models/todo';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,12 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
-  getTodos(): Observable<ReadonlyArray<Todo>> {
-    return this.http.get<ReadonlyArray<Todo>> (this.url).pipe(
+  getTodos(): Observable<Todo[]> {
+
+    return this.http.get<Todo[]> (this.url).pipe(
+      tap(obj => {
+        console.log(obj);
+      }),
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         return throwError(error);

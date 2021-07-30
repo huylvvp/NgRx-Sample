@@ -2,48 +2,35 @@ import { ActionReducerMap, createReducer, on } from '@ngrx/store';
 
 import { Todo } from '../../Models/todo';
 import { addTodo, addTodoSuccess, deleteTodoSuccess, getTodosSuccess, updateTodoSuccess } from '../Actions/todo.actions';
-import { initialTodosState } from '../todo.state';
+import { initialTodosState, todosAdapter } from '../todo.state';
 
 export const todosReducer = createReducer(
   initialTodosState,
   on(getTodosSuccess,
-    (state, { todos }) => (
-      {
-        ...state,
-        todos: todos,
-      }
-    )
+    (state, { todos }) =>
+      todosAdapter.setAll(todos.filter(todo => !todo.complete), state)
+      
   ),
 
   on(addTodoSuccess,
-    (state, { todo }) => {
-      
-      return {
-        ...state,
-        todos: [...state.todos, todo],
-      }
-    }),
+    (state, { todo }) =>
+      todosAdapter.addOne(todo, state)
+  ),
 
   on(updateTodoSuccess,
-    (state, { todo }) => {
-      const todos = state.todos.map((t) => {
-        if (t.id === todo.id) {
-          return todo;
+    (state, { todo }) =>
+      todosAdapter.updateOne({
+        id: todo.id,
+        changes: {
+          ...state.entities[todo.id],
+          title: todo.title,
+          complete: todo.complete
         }
-        return t;
-      });
-      return {
-        ...state,
-        todos: todos,
-      }
-    }),
-  
+      }, state)
+  ),
+
   on(deleteTodoSuccess,
-    (state,{todoId}) => (
-      {
-        ...state,
-        todos: state.todos.filter((todo) => todo.id != todoId)
-      }
-    )
-    )
+    (state, { todoId }) =>
+      todosAdapter.removeOne(todoId, state)
+  )
 )

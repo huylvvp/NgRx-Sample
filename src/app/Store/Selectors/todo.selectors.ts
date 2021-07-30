@@ -2,13 +2,25 @@ import { createSelector, createFeatureSelector } from "@ngrx/store";
 
 import { Todo } from '../../Models/todo';
 import { AppState } from "../app.state";
+import { todosAdapter, TodosState } from "../todo.state";
+
+export const TODOS_STATE_NAME = 'todos';
+const getTodosState = createFeatureSelector<TodosState>("todos");
+
+export const todosSelectors = todosAdapter.getSelectors();
 
 
-// chi lay phan tu todo co complete = false
 export const selectTodos = createSelector(
-  (state: AppState) => state.todos.todos,
-  (todos: ReadonlyArray<Todo>) =>
+  getTodosState,
+  todosSelectors.selectAll
+)
+
+
+export const selectTodosByCompleted = (is_completed: boolean) => createSelector(
+  selectTodos,
+  (todos) => 
     todos.filter(todo => !todo.complete)
+  
 )
 
 const routeParams = createSelector(
@@ -20,6 +32,6 @@ const routeParams = createSelector(
 export const todo = createSelector(
   selectTodos,
   routeParams,
-  (todos: ReadonlyArray<Todo>,{id}) =>
+  (todos: Todo[],{id}) =>
     todos.filter((todo) => todo.id === Number(id))[0]
 )

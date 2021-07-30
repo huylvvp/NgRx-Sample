@@ -15,8 +15,9 @@ export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
 
 export const metaReducers: MetaReducer<any>[] = [debug];
 
-export const reducers: ActionReducerMap<AppState> = {
+export const reducers = {
   todos:todosReducer,
   shared:sharedReducers,
   router:routerReducer
 }
+

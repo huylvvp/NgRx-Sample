@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../Store/app.state';
 import { todo } from '../Store/Selectors/todo.selectors';
@@ -10,9 +11,12 @@ import { todo } from '../Store/Selectors/todo.selectors';
 })
 export class TodoDetailComponent implements OnInit {
   todo$ = this.store.pipe(select(todo));
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>){
+    
+  }
 
   ngOnInit(): void {
+    
   }
 
 }

@@ -19,7 +19,7 @@ export const getTodos = createAction(TodosAction.GetTodos);
 
 export const getTodosSuccess = createAction(
   TodosAction.GetTodosSuccess,
-  props<{ todos: ReadonlyArray<Todo> }>()
+  props<{ todos: Todo[] }>()
 );
 
 export const addTodo = createAction(

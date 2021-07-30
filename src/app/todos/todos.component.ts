@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { AppState } from '../Store/app.state';
 import { Todo } from '../Models/todo';
 import { deleteTodo, getTodos, updateTodo } from '../Store/Actions/todo.actions';
-import { selectTodos } from '../Store/Selectors/todo.selectors';
+import {  selectTodos, selectTodosByCompleted } from '../Store/Selectors/todo.selectors';
 import { Output,EventEmitter } from '@angular/core';
 
 @Component({
@@ -15,7 +15,7 @@ import { Output,EventEmitter } from '@angular/core';
 })
 export class TodosComponent implements OnInit {
   @Output() onEditTodo: EventEmitter<Todo> = new EventEmitter();
-  todos$: Observable<ReadonlyArray<Todo>> = this.store.select(selectTodos);
+  todos$: Observable<Todo[]> = this.store.select(selectTodosByCompleted(false));
   constructor(
     private store: Store<AppState>) {
 

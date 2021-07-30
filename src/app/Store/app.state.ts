@@ -6,7 +6,8 @@ import { TodosState } from "./todo.state";
 
 // init state tree in project
 export interface AppState {
-  todos: TodosState,
+  // todos: TodosState,
+  todos: TodosState
   shared:SharedState
   router: RouterReducerState<any>
 }
